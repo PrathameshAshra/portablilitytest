@@ -1,0 +1,70 @@
+.container-fluid {
+    background-color: #f2f5f7;
+    width: 100%;
+    min-height: 100%;
+    .breadcrumbs {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        margin-top: 30px;
+        margin-left: 60px;
+        display: inline-block;
+        background-color: #f2f5f7;
+    }
+    .toolbar {
+        margin-top: 30px;
+        margin-left: 60px;
+        .toolbar__search {
+            margin: 0px 10px 0px 0px;
+        }
+        .toolbar__select {
+            margin: 0px 10px 0px 0px;
+        }
+        .toolbar__submit {
+            margin: 0px 10px 0px 0px;
+        }
+    }
+}
+
+
+.resultContainer {
+    height: calc(100% - 160px);
+    display: flex;
+    padding: 30px 60px;
+    flex-direction: column;
+    // overflow: scroll;
+    .example-container {
+        overflow-x: scroll;
+      }
+    table {
+        width: 100%;
+      }
+    .header-row {
+        display: flex;
+        .header-name {
+            width: 20%;
+            text-align: center;
+        }
+    }
+
+    
+    .content-row {
+        display: flex;
+    }
+    .content-name {
+        width: 20%;
+        text-align: center;
+    }
+}
+.warning{
+    margin-left: 60px;
+}
+.mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
+  }
+.displayNone{
+    display: none;
+}
