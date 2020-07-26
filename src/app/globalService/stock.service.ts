@@ -26,8 +26,12 @@ export class StockService {
     public getStockList(searchword,limit,exchange): Observable<any> {
 
         
-        return this.httpClient.get<any>(this.AppConfig + searchword+"&limit="+limit+"&exchange="+exchange +"&apikey=demo", this.httpOptions)
+        return this.httpClient.get<any>(this.AppConfig + searchword+"&limit="+limit+"&exchange="+exchange +"&apikey=8db6d2845cd65410bf270c1574fa044e", this.httpOptions)
 
     }
    
+  // Download Statement
+  downloadStatement(symbol: string): Observable<any> {
+    return this.httpClient.get('https://financialmodelingprep.com/api/v3/financials/income-statement/' + symbol + '?datatype=csv&apikey=8db6d2845cd65410bf270c1574fa044e' ,this.httpOptions);
+  }
 }

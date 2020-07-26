@@ -90,15 +90,47 @@ dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
     private _StockService: StockService
   ) { }
   sumbitForm(){
-    this.displayTable = true
     console.log(this.searchKeyword,this.searchlimit,this.searchexchange)
     this._StockService.getStockList(this.searchKeyword,this.searchlimit,this.searchexchange).subscribe(
       data=>{
         console.log(data)
+        this.displayTable = true
+
         this.dataSource.data = data
         this.dataSource.paginator = this.paginator;
       }
     )
+  }
+  
+  downLoadFile(data: any, filename ) {
+    // ReadingData
+    const replacer = (key, value) => value === null ? '' : value; 
+    const header = Object.keys(data[0]);
+    const csv = data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','));
+    csv.unshift(header.join(',')); 
+    const csvArray = csv.join('\r\n');
+    const blob = new Blob([csvArray], { type: 'text/csv;charset=utf-8;' });
+    // CraetingData invisible element
+    const url = window.URL.createObjectURL(blob);
+    const downloadLink = document.createElement('a');
+    downloadLink.setAttribute('href', url);
+    downloadLink.setAttribute('download', filename + '.csv');
+    downloadLink.style.visibility = 'hidden';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
+  downloadStatement(symbol: string,companyName: string) {
+    this._StockService.downloadStatement(symbol).subscribe(data => {
+      console.log(data)
+      if(data.symbol){
+        this.downLoadFile(data.financials,companyName);
+      }else{
+        alert("Something went Wrong, Try again later !")
+
+      }
+    });
   }
   ngOnInit(): void {
 

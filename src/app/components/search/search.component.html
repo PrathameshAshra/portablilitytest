@@ -58,7 +58,7 @@
       <!-- Symbol Column -->
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef> Action</th>
-        <td mat-cell  *matCellDef="let element">  <a href="https://financialmodelingprep.com/api/v3/income-statement/{{element.symbol}}?datatype=csv&apikey=demo" target="_blank" rel="noopener noreferrer">Download</a>  </td>
+        <td mat-cell  *matCellDef="let element">  <a class="downloadlink" (click)="downloadStatement(element.symbol,element.name)">Download</a>  </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
